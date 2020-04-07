@@ -26,6 +26,10 @@ function Map() {
           onClick={() => {
             setSelectedPark(park);
           }}
+          icon={{
+            url: '/skateboarding.svg',
+            scaledSize: new window.google.maps.Size(25, 25),
+          }}
         />
       ))}
       {selectedPark && (
@@ -38,7 +42,10 @@ function Map() {
             setSelectedPark(null);
           }}
         >
-          <div>park details</div>
+          <div>
+            <h2>{selectedPark.properties.NAME}</h2>
+            <p>{selectedPark.properties.DESCRIPTIO}</p>
+          </div>
         </InfoWindow>
       )}
     </GoogleMap>
