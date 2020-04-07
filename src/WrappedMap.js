@@ -23,7 +23,9 @@ function Map() {
             lat: park.geometry.coordinates[1],
             lng: park.geometry.coordinates[0],
           }}
-          onClick={() => setSelectedPark(park)}
+          onClick={() => {
+            setSelectedPark(park);
+          }}
         />
       ))}
       {selectedPark && (
@@ -31,6 +33,9 @@ function Map() {
           position={{
             lat: selectedPark.geometry.coordinates[1],
             lng: selectedPark.geometry.coordinates[0],
+          }}
+          onCloseClick={() => {
+            setSelectedPark(null);
           }}
         >
           <div>park details</div>
