@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   GoogleMap,
   withScriptjs,
   withGoogleMap,
   Marker,
+  InfoWindow,
 } from 'react-google-maps';
 import * as parksData from './data/skateboard-parks.json';
 
 function Map() {
+  const [selectedPark, setSelectedPark] = useState(null);
+
   return (
     <GoogleMap
       defaultZoom={10}
@@ -20,8 +23,19 @@ function Map() {
             lat: park.geometry.coordinates[1],
             lng: park.geometry.coordinates[0],
           }}
+          onClick={() => setSelectedPark(park)}
         />
       ))}
+      {selectedPark && (
+        <InfoWindow
+          position={{
+            lat: selectedPark.geometry.coordinates[1],
+            lng: selectedPark.geometry.coordinates[0],
+          }}
+        >
+          <div>park details</div>
+        </InfoWindow>
+      )}
     </GoogleMap>
   );
 }
