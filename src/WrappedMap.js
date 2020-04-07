@@ -7,6 +7,7 @@ import {
   InfoWindow,
 } from 'react-google-maps';
 import * as parksData from './data/skateboard-parks.json';
+import mapStyles from './mapStyles';
 
 function Map() {
   const [selectedPark, setSelectedPark] = useState(null);
@@ -15,6 +16,7 @@ function Map() {
     <GoogleMap
       defaultZoom={10}
       defaultCenter={{ lat: 45.421532, lng: -75.697189 }}
+      defaultOptions={{ styles: mapStyles }}
     >
       {parksData.features.map((park) => (
         <Marker
